@@ -5,18 +5,21 @@ import {colors} from '../../utils';
 import {IconBack, RegisterImage} from '../../assets';
 
 const Register = () => {
-  useEffect(() => {
-    console.log('Arief Wicaksono');
-  }, []);
-
   const [form, setForm] = useState({
     fullName: '',
     email: '',
     password: '',
   });
 
+  const onInputChange = (value, input) => {
+    setForm({
+      ...form,
+      [input]: value,
+    });
+  };
+
   const sendData = () => {
-    console.log('data yang dikirim : ');
+    console.log('data yang dikirim : ', form);
   };
   return (
     <View style={styles.wrapper.page}>
@@ -28,11 +31,24 @@ const Register = () => {
         </Text>
 
         <View style={styles.space(64)} />
-        <Input placeholder="Nama Lengkap" />
+        <Input
+          placeholder="Nama Lengkap"
+          value={form.fullName}
+          onChangeText={value => onInputChange(value, 'fullName')}
+        />
         <View style={styles.space(33)} />
-        <Input placeholder="E - Mail" />
+        <Input
+          placeholder="E - Mail"
+          value={form.email}
+          onChangeText={value => onInputChange(value, 'email')}
+        />
         <View style={styles.space(33)} />
-        <Input placeholder="Password" />
+        <Input
+          placeholder="Password"
+          value={form.password}
+          onChangeText={value => onInputChange(value, 'password')}
+          secureTextEntry={true}
+        />
         <View style={styles.space(80)} />
         <Button title="Daftar" onPress={sendData} />
       </ScrollView>
