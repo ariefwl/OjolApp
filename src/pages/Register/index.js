@@ -1,24 +1,41 @@
-import React from 'react';
-import {Text, View} from 'react-native';
-import {Input} from '../../components';
+import React, {useEffect, useState} from 'react';
+import {ScrollView, Text, View} from 'react-native';
+import {Button, Input} from '../../components';
 import {colors} from '../../utils';
 import {IconBack, RegisterImage} from '../../assets';
 
 const Register = () => {
+  useEffect(() => {
+    console.log('Arief Wicaksono');
+  }, []);
+
+  const [form, setForm] = useState({
+    fullName: '',
+    email: '',
+    password: '',
+  });
+
+  const sendData = () => {
+    console.log('data yang dikirim : ');
+  };
   return (
     <View style={styles.wrapper.page}>
-      <IconBack width={25} height={25} />
-      <RegisterImage width={170} height={106} style={styles.ilustration} />
-      <Text style={styles.text.desc}>
-        Mohon mengisi beberapa data untuk proses daftar anda{' '}
-      </Text>
+      <ScrollView>
+        <IconBack width={25} height={25} />
+        <RegisterImage width={170} height={106} style={styles.ilustration} />
+        <Text style={styles.text.desc}>
+          Mohon mengisi beberapa data untuk proses daftar anda{' '}
+        </Text>
 
-      <View style={styles.space(64)} />
-      <Input placeholder="Nama Lengkap" />
-      <View style={styles.space(33)} />
-      <Input placeholder="E - Mail" />
-      <View style={styles.space(33)} />
-      <Input placeholder="Password" />
+        <View style={styles.space(64)} />
+        <Input placeholder="Nama Lengkap" />
+        <View style={styles.space(33)} />
+        <Input placeholder="E - Mail" />
+        <View style={styles.space(33)} />
+        <Input placeholder="Password" />
+        <View style={styles.space(80)} />
+        <Button title="Daftar" onPress={sendData} />
+      </ScrollView>
     </View>
   );
 };
